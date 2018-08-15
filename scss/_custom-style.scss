@@ -1,0 +1,76 @@
+// custom style
+
+
+// setup
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px;
+    &::after{
+      content : none;
+      display : none;
+    }
+}
+
+
+
+// content
+.left-col {
+    position : relative;
+    z-index : 2;
+    padding: 2rem 0;
+    @media (min-width: 660px) {
+        width : 65%;
+    }
+
+    h1 {
+        position : fixed;
+        top : 0;
+        left : 0;
+        width : 100%;
+        padding : 1.6rem 20px;
+        padding-right : 8rem;
+        background : $blue_lighter;
+        @media (min-width: 660px) {
+            position : relative;
+            padding : 1.6rem 0;
+            background : transparent;
+        }
+    }
+    .content {
+        padding-top : 12rem;
+        @media (min-width: 550px) {
+            padding-top : 8rem;
+        }
+        @media (min-width: 660px) {
+            padding-top : 0;
+        }
+    }
+}
+
+// fixed image
+.fixed-img {
+    position : fixed;
+    top : 0;
+    right : 0;
+    left : auto;
+    width : 12rem;
+    height : 12rem;
+    z-index : 2;
+    @media (min-width: 550px) {
+        width : 7.6rem;
+        height : 7.6rem;
+    }
+    @media (min-width: 600px) {
+        top : 30%;
+        right : 20px;
+        width : auto;
+        height : auto;
+        z-index : 1;
+        transform : rotate(5deg);
+    }
+    
+}

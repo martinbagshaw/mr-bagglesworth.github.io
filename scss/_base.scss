@@ -1,0 +1,153 @@
+// Base
+
+// colours
+$yellow : #ffc600;
+$red : #e74e42;
+$blue : #7fc1ff;
+$green : #70bf44;
+$white : #ffffff;
+$black : #000000;
+
+// blues
+$blue_lightest : lighten( $blue, 20% );
+$blue_lighter : lighten( $blue, 15% );
+$blue_light : lighten( $blue, 10% );
+$blue_dark : darken( $blue, 10% );
+$blue_darker : darken( $blue, 20% );
+
+// greens
+$green_lighter : lighten( $green, 15% );
+$green_light : lighten( $green, 10% );
+$green_dark : darken( $green, 10% );
+
+// reds
+$red_lighter : lighten( $red, 15% );
+$red_light : lighten( $red, 10% );
+$red_dark : darken( $red, 10% );
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// font families
+$font-main : 'Signika', Helvetica, Arial, sans-serif;
+$font-icons : 'FontAwesome';
+
+// font weights
+$normal : 200;
+$bold : 400;
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// typography
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6em; // currently ems cause chrome bug misinterpreting rems on body element
+    font-size : 1.6rem;
+    line-height: 1.4;
+    font-weight: $normal;
+    font-family: $font-main;
+    color: $black;
+    background: $blue_lightest;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: $bold;
+    line-height: 1.6;
+}
+h1 {
+    font-size: 2.8rem;
+    letter-spacing: 0.02rem;
+}
+h2 {
+    font-size: 2.6rem;
+    letter-spacing: 0.03rem;
+}
+p {
+    margin-bottom : 1.6rem;
+}
+.lg-text {
+    font-size : 1.8rem;
+    line-height : 1.6;
+}
+i.fa {
+    font-size : 2.6rem;
+    &.center {
+        display : block;
+        text-align : center;
+        margin-bottom : 2rem;
+    }
+    &.inline {
+        margin-left : .5rem;
+        vertical-align : middle;
+    }
+    
+}
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// Links
+a {
+    color : $blue_dark;
+    outline : 0 none;
+    text-decoration : none;
+    transition : all 0.3s ease-in-out 0s;
+    &:hover {
+        color : $blue_darker;
+    }
+}
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// mixins
+
+// $hoverColours: (
+//   'green' : $green,
+//   'green-light' : $green_lighter,
+//   'green-hover' : $green_dark,
+//   'blue' : $blue,
+//   'blue-light' : $blue_lighter,
+//   'blue-hover' : $blue_dark,
+//   'red' : $red,
+//   'red-light' : $red_lighter,
+//   'red-hover' : $red_dark
+// );
+
+
+// @mixin btnType($colourName){
+//     // display: inline-block;
+//     border : 0;
+//     padding: 1rem 2rem;
+//     // font-size: 2.25rem;
+//     line-height: 1;
+//     font-weight: $bold;
+//     letter-spacing: .1rem;
+//     text-decoration: none;
+//     white-space: nowrap;
+//     // border-radius: 4px;
+//     cursor : pointer;
+//     box-sizing: border-box;
+//     transition: all ease-in-out 0.3s;
+//     background-color: transparent;
+
+//     color : map-get($hoverColours, $colourName);
+//     background-color : map-get($hoverColours, #{$colourName}#{-light});
+//     &:hover,
+//     &:focus,
+//     &.active {
+//         outline : none;
+//         color : $white;
+//         background-color: map-get($hoverColours, #{$colourName}#{-hover});
+//     }
+//     @content;
+// }
+
