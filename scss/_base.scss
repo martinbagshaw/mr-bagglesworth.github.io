@@ -1,29 +1,34 @@
 // Base
 
 // colours
-$yellow : #ffc600;
 $red : #e74e42;
 $blue : #7fc1ff;
 $green : #70bf44;
 $white : #ffffff;
+$grey : #f5f5f5;
 $black : #000000;
 
-// blues
-$blue_lightest : lighten( $blue, 20% );
-$blue_lighter : lighten( $blue, 15% );
-$blue_light : lighten( $blue, 10% );
+// variations
+$grey_light : lighten( $grey, 1% );
+$grey_dark : darken( $grey, 10% );
+$grey_darker : darken( $grey, 20% );
+$grey_darkest : darken( $grey, 50% );
+
+$red_light : lighten( $red, 10% );
+$red_dark : darken( $red, 10% );
+$red_darker : darken( $red, 20% );
+
 $blue_dark : darken( $blue, 10% );
 $blue_darker : darken( $blue, 20% );
 
-// greens
-$green_lighter : lighten( $green, 15% );
-$green_light : lighten( $green, 10% );
 $green_dark : darken( $green, 10% );
+$green_darker : darken( $green, 20% );
 
-// reds
-$red_lighter : lighten( $red, 15% );
-$red_light : lighten( $red, 10% );
-$red_dark : darken( $red, 10% );
+
+// shadows
+$box_inset : 0 0 1rem rgba($black, 0.12), inset 0 0 .5rem rgba($black, 0.19);
+$box_regular : 0 0 4rem rgba($black, 0.14);
+$box_regular_dark : -1rem 1rem 2rem rgba($black, 0.21);
 
 
 
@@ -36,6 +41,7 @@ $font-icons : 'FontAwesome';
 // font weights
 $normal : 200;
 $bold : 400;
+$bolder : 600;
 
 
 
@@ -43,51 +49,79 @@ $bold : 400;
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // typography
 html {
-    font-size: 62.5%;
+    font-size : 62.5%;
 }
 body {
     font-size: 1.6em; // currently ems cause chrome bug misinterpreting rems on body element
     font-size : 1.6rem;
-    line-height: 1.4;
-    font-weight: $normal;
-    font-family: $font-main;
-    color: $black;
-    background: $blue_lightest;
+    line-height : 1.4;
+    font-weight : $normal;
+    font-family : $font-main;
+    color : $black;
+    background : $grey_light;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 1rem;
-    font-weight: $bold;
-    line-height: 1.6;
+    margin-bottom : 1rem;
+    font-weight : $bold;
+    line-height : 1.6;
+    strong {
+        font-weight : $bolder;
+    }
 }
 h1 {
-    font-size: 2.8rem;
-    letter-spacing: 0.02rem;
+    font-size : 2.8rem;
+    letter-spacing : 0.02rem;
 }
 h2 {
-    font-size: 2.6rem;
-    letter-spacing: 0.03rem;
+    font-size : 2.6rem;
+    letter-spacing : 0.03rem;
+}
+h3 {
+    font-size : 2.4rem;
+    letter-spacing : 0.01rem;
 }
 p {
     margin-bottom : 1.6rem;
 }
-.lg-text {
-    font-size : 1.8rem;
-    line-height : 1.6;
-}
-i.fa {
-    font-size : 2.6rem;
-    &.center {
-        display : block;
-        text-align : center;
-        margin-bottom : 2rem;
+
+
+
+
+
+
+
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// container and layout
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 2rem;
+    &::after{
+      content : none;
+      display : none;
     }
-    &.inline {
-        margin-left : .5rem;
-        vertical-align : middle;
+    &.padded {
+        padding-top : 6rem;
+        padding-bottom : 6rem;
     }
-    
 }
+
+.cols-two {
+    display : grid;
+    grid-gap : 4rem 0;
+    @media (min-width: 660px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap : 0 4rem;
+    }
+}
+
+
+
+
 
 
 
@@ -95,12 +129,24 @@ i.fa {
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // Links
 a {
-    color : $blue_dark;
     outline : 0 none;
     text-decoration : none;
     transition : all 0.3s ease-in-out 0s;
+    color : $red_dark;
     &:hover {
-        color : $blue_darker;
+        color : $red_darker;
+    }
+    &.blue {
+        color : $blue_dark;
+        &:hover {
+            color : $blue_darker;
+        }
+    }
+    &.green {
+        color : $green_dark;
+        &:hover {
+            color : $green_darker;
+        }
     }
 }
 
@@ -108,46 +154,9 @@ a {
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
-// mixins
-
-// $hoverColours: (
-//   'green' : $green,
-//   'green-light' : $green_lighter,
-//   'green-hover' : $green_dark,
-//   'blue' : $blue,
-//   'blue-light' : $blue_lighter,
-//   'blue-hover' : $blue_dark,
-//   'red' : $red,
-//   'red-light' : $red_lighter,
-//   'red-hover' : $red_dark
-// );
-
-
-// @mixin btnType($colourName){
-//     // display: inline-block;
-//     border : 0;
-//     padding: 1rem 2rem;
-//     // font-size: 2.25rem;
-//     line-height: 1;
-//     font-weight: $bold;
-//     letter-spacing: .1rem;
-//     text-decoration: none;
-//     white-space: nowrap;
-//     // border-radius: 4px;
-//     cursor : pointer;
-//     box-sizing: border-box;
-//     transition: all ease-in-out 0.3s;
-//     background-color: transparent;
-
-//     color : map-get($hoverColours, $colourName);
-//     background-color : map-get($hoverColours, #{$colourName}#{-light});
-//     &:hover,
-//     &:focus,
-//     &.active {
-//         outline : none;
-//         color : $white;
-//         background-color: map-get($hoverColours, #{$colourName}#{-hover});
-//     }
-//     @content;
-// }
-
+// Images
+img:not(.nav-img) {
+    width : 100%;
+    height : auto;
+    margin-bottom : 2rem;
+}

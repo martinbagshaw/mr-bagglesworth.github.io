@@ -1,76 +1,171 @@
 // custom style
 
 
-// setup
-.container {
-    position: relative;
-    width: 100%;
-    max-width: 1160px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding: 0 20px;
-    &::after{
-      content : none;
-      display : none;
-    }
-}
 
-
-
-// content
-.left-col {
-    position : relative;
-    z-index : 2;
-    padding: 2rem 0;
-    @media (min-width: 660px) {
-        width : 65%;
-    }
-
-    h1 {
-        position : fixed;
-        top : 0;
-        left : 0;
-        width : 100%;
-        padding : 1.6rem 20px;
-        padding-right : 8rem;
-        background : $blue_lighter;
-        @media (min-width: 660px) {
-            position : relative;
-            padding : 1.6rem 0;
-            background : transparent;
-        }
-    }
-    .content {
-        padding-top : 12rem;
-        @media (min-width: 550px) {
-            padding-top : 8rem;
-        }
-        @media (min-width: 660px) {
-            padding-top : 0;
-        }
-    }
-}
-
-// fixed image
-.fixed-img {
+// nav
+#nav {
     position : fixed;
     top : 0;
-    right : 0;
-    left : auto;
-    width : 12rem;
-    height : 12rem;
-    z-index : 2;
-    @media (min-width: 550px) {
-        width : 7.6rem;
-        height : 7.6rem;
-    }
-    @media (min-width: 600px) {
-        top : 30%;
-        right : 20px;
-        width : auto;
-        height : auto;
-        z-index : 1;
-        transform : rotate(5deg);
-    }
+    z-index : 1;
+    width : 100%;
+    background : $grey;
+    border-bottom : 3px solid $red;
     
+    @media (min-width: 660px) {
+        height : 100px;
+        .container {
+            display : grid;
+            grid-template-columns: 4fr 1fr;
+            grid-gap : 0 20px;
+        }
+    }
+    h1 {
+        margin : 0;
+        line-height : 100px;
+        text-align : center;
+        @media (min-width: 660px) {
+            text-align : left;
+        }
+    }
+}
+
+
+
+
+// links column
+#links {
+    position : relative;
+}
+
+// checkbox
+#toggle {
+    display : none;
+    &:checked ~ #menu {
+        display : block;
+        opacity : 1;
+    }
+    &:checked + #label:after {
+        content : "\f077";
+    }
+}
+
+// label
+#label {
+	display : block;
+	position : relative;
+	cursor : pointer;
+	user-select : none;
+	z-index : 2;
+    font-family : $font-icons;
+    &:after {
+        display : block;
+        box-sizing : border-box;
+        width : 10rem;
+        margin : 0 auto;
+        border-radius : 2rem 2rem 0 0;
+        line-height : 50px;
+        text-align : center;
+        content : "\f078";
+        font-size : 2.8rem;
+        font-weight : $bold;
+        color : $white;
+        background-color : $red;
+        transition : all .3s linear;
+        @media (min-width: 660px) {
+            width : auto;
+            border-radius : 0;
+            line-height : 100px;
+        }
+    }
+    &:hover:after {
+        background-color : $red_light;
+    }
+}
+
+
+// items list
+#menu {
+	display : none;
+	opacity : 0;
+    border-radius : 2rem 2rem 0 0;
+    overflow : hidden;
+    @media (min-width: 660px) {
+        border-radius : 0;
+        position : absolute;
+        right : 0;
+        width : 330px;
+        box-shadow : $box_regular_dark;
+    }
+    li a {
+        display : block;
+        width : 100%;
+        box-sizing : border-box;
+        padding : 0 2rem;
+        background-color : $grey_dark;
+        transition : all .3s linear;
+        color : $black;
+        height : 5rem;
+        line-height : 5rem;
+        font-size : 2rem;
+        font-weight : $bold;
+        .nav-img {
+            vertical-align : middle;
+            margin-right : 2rem;
+        }
+        &:hover {
+            background : $grey_darker;
+        }
+    }
+}
+
+
+
+
+
+// _________________________________________
+// content
+
+
+// intro
+#intro {
+    margin-top : 150px;
+    @media (min-width: 660px) {
+        margin-top : 100px;
+    }
+}
+
+// why
+#why {
+    background : $black;
+    color : $white;
+}
+
+
+// hobbies - material design cards
+#hobbies .cols-two > div {
+    position : relative;
+    border : 1px solid $grey;
+    box-shadow : $box_regular;
+}
+
+
+.img-container {
+    position : relative;
+    h3 {
+        position : absolute;
+        bottom : 2rem;
+        padding : 1rem 2rem;
+        color : $white;
+    }
+    + p {
+        margin : 0;
+        padding : 0 2rem 6rem;
+        a {
+            position : absolute;
+            bottom : 0;
+            text-transform : uppercase;
+            font-weight : $bold;
+            padding : 2rem 0;
+        }
+    }
 }
