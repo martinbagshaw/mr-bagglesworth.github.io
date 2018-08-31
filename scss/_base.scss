@@ -4,6 +4,7 @@
 $red : #e74e42;
 $blue : #7fc1ff;
 $green : #70bf44;
+$code_green : #89d038; // #688942
 $white : #ffffff;
 $grey : #f5f5f5;
 $black : #000000;
@@ -12,6 +13,7 @@ $black : #000000;
 $grey_light : lighten( $grey, 1% );
 $grey_dark : darken( $grey, 10% );
 $grey_darker : darken( $grey, 20% );
+$grey_darkish : darken( $grey, 35% );
 $grey_darkest : darken( $grey, 50% );
 
 $red_light : lighten( $red, 10% );
@@ -30,12 +32,16 @@ $box_inset : 0 0 1rem rgba($black, 0.12), inset 0 0 .5rem rgba($black, 0.19);
 $box_regular : 0 0 4rem rgba($black, 0.14);
 $box_regular_dark : -1rem 1rem 2rem rgba($black, 0.21);
 
-
+// gradients
+// $grad_diag : linear-gradient(to bottom right, blue, pink);
+$grad_screen : linear-gradient(235deg, #707070, #414040 35%);
+$grad_keyboard : linear-gradient(to top, $grey_darkish 50%, $grey_darker 51%);
 
 
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 // font families
 $font-main : 'Signika', Helvetica, Arial, sans-serif;
+$font-code : 'Courier New', sans-serif;
 $font-icons : 'FontAwesome';
 
 // font weights
@@ -117,6 +123,10 @@ p {
         grid-template-columns: 1fr 1fr;
         grid-gap : 0 4rem;
     }
+}
+
+.animation {
+    align-self : center;
 }
 
 

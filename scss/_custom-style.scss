@@ -6,7 +6,7 @@
 #nav {
     position : fixed;
     top : 0;
-    z-index : 1;
+    z-index : 4;
     width : 100%;
     background : $grey;
     border-bottom : 3px solid $red;
@@ -21,10 +21,12 @@
     }
     h1 {
         margin : 0;
-        line-height : 100px;
+        padding : 2rem 0;
         text-align : center;
         @media (min-width: 660px) {
             text-align : left;
+            padding : 0;
+            line-height : 100px;
         }
     }
 }
@@ -138,6 +140,13 @@
 #why {
     background : $black;
     color : $white;
+    overflow : hidden;
+    .animation {
+        order : 1;
+        @media (min-width: 660px) {
+            order : 0;
+        }
+    }
 }
 
 
@@ -168,4 +177,231 @@
             padding : 2rem 0;
         }
     }
+}
+
+
+
+
+
+
+
+
+
+// _________________________________________
+// fancy stuff - css animations
+
+@mixin animationPos {
+    position : relative;
+    max-width : 44rem;
+    min-height : 24rem;
+    margin : 0 auto;
+    @content;
+}
+
+
+
+// ______________________
+// a) laptop
+.laptop {
+    @include animationPos;
+}
+.screen {
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    width : 80%;
+    margin : 0 10%;
+    padding : 5%;
+    overflow : hidden;
+    border-radius : 2rem 2rem 0 0;
+    background: $grad_screen;
+    border : 2rem solid $black;
+    box-shadow : 0 0 0 0.5rem $grey_darker;
+    p {
+        font-size : 2.4rem;
+        font-family : $font-code;
+        font-weight : $bolder;
+        line-height : 1;
+        color : $code_green;
+        overflow : hidden;
+        border-right : .15em solid $grey;
+        white-space : nowrap;
+        letter-spacing : .15em;
+        animation : 
+        typing 3.5s steps(30, end),
+        blink-caret 1s step-end infinite;
+    } 
+}
+.keyboard {
+    position : absolute;
+    top : 100%;
+    left : 0;
+    right : 0;
+    height : 2rem;
+    border-radius : 0 0 100% 100%;
+    background : $grad_keyboard;
+}
+
+
+// type effect
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+// type cursor effect
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: $grey }
+}
+
+
+
+
+
+// ______________________
+// b) puzzle
+
+// colours
+@mixin puzzColour($code, $name){
+    .piece.#{$name},
+    .#{$name} p:before,
+    .#{$name} p:after,
+    .piece.#{$name}:after {
+        background : $code;
+    }
+    @media (min-width: 1000px) {
+        .piece.#{$name}:before {
+            background : $code;
+        }
+    }
+}
+@include puzzColour($red, 'red');
+@include puzzColour($green, 'green');
+@include puzzColour($blue, 'blue');
+
+
+// dots
+/*
+:before = black gap = larger
+
+small p - same size, do nothing
+small div - larger
+large p - larger
+large div - same size, decrease
+*/
+@mixin puzzDot($style) {
+    position : absolute;
+    content : "";
+    width : 3rem;
+    height : 3rem;
+    border-radius : 1.5rem;
+    display : block;
+    // increase size for gaps
+    @if $style == 'p' {
+        @media (min-width: 1000px) {
+            width : 4rem;
+            height : 4rem;
+            border-radius : 2rem;
+            left : -1.75rem;
+            top : calc(50% - 2rem);
+            background : $black;
+        }
+    }
+    // increase size for gaps
+    @if $style == 'div' {
+        width : 4rem;
+        height : 4rem;
+        border-radius : 2rem;
+        left : calc(50% - 2rem);
+        top : -1.75rem;
+        background : $black;
+        @media (min-width: 1000px) {
+            width : 3rem;
+            height : 3rem;
+            border-radius : 1.5rem;
+            top : -2.25rem;
+        }
+    }
+    @content;
+}
+
+
+
+// ___________
+// puzzle
+.puzzle {
+    @include animationPos;
+    padding : 0 5%;
+    display : grid;
+    grid-gap : .5rem;
+    @media (min-width: 1000px) {
+        max-width : 60rem;
+        padding : 0;
+        grid-template-columns: 1.4fr 2fr 2fr;
+    }
+    p {
+        margin : 0;
+        font-size : 2.4rem;
+        font-weight : $bold;
+        color : $black;
+        text-align : center;
+        // left and right dots
+        &:before {
+            @include puzzDot('p');
+            left : -2.25rem;
+            top : calc(50% - 1.5rem);
+        }
+        &:after {
+            @include puzzDot('none');
+            right : -2.25rem;
+            top : calc(50% - 1.5rem);
+        }
+    }
+}
+
+
+.piece {
+    align-self : center;
+    padding : 4rem 1rem;
+    position : relative;
+    @media (min-width: 1000px) {
+        padding-left : 2.25rem;
+    }
+    // top and bottom dots
+    &:before {
+        @include puzzDot('div');
+    }
+    &:after {
+        @include puzzDot('none');
+        left : calc(50% - 1.5rem);
+        bottom : -2.25rem;
+    }
+}
+
+.p1 {
+    z-index : 3;
+    transform : translateY(-500%) rotate(-110deg);
+    .animated & {
+        animation : topPiece 1.5s forwards;
+    }  
+}
+.p2 {
+    z-index : 2;
+}
+.p3 {
+    z-index : 1;
+    transform : translateY(500%) rotate(110deg);
+    .animated & {
+        animation : bottomPiece 1.5s forwards;
+    } 
+}
+
+@keyframes topPiece {
+    from { transform : translateY(-500%) rotate(-110deg); }
+    to { transform : translateY(0) rotate(0deg); }
+}
+@keyframes bottomPiece {
+    from { transform : translateY(500%) rotate(110deg); }
+    to { transform : translateY(0) rotate(0deg); }
 }

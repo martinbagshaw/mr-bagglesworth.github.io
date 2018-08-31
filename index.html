@@ -62,14 +62,34 @@
           things are the way they are. I also find the scope of possibilities for what you can do with modern front 
           end development quite inspiring.</p>
       </div>
-      <div></div>
+      <div class="animation">
+        <div class="laptop">
+            <div class="screen">
+              <p>I like to code...</p>
+            </div>
+            <div class="keyboard"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
 
   <div id="why">
     <div class="container padded cols-two">
-      <div></div>
+      <div class="animation">
+          <div class="puzzle">
+            <div class="piece p1 red">
+              <p>I want</p>
+            </div>
+            <div class="piece p2 green">
+              <p>to collaborate</p>
+            </div>
+            <div class="piece p3 blue">
+              <p>and improve</p>
+            </div>
+          </div>
+      </div>
       <div>
         <h2>So you are already a developer. <strong>Why Apply?</strong></h2>
         <p>A common theme throughout my code learning process is that I have almost exclusively been doing it 
@@ -85,13 +105,13 @@
           I have found a great opportunity to get involved with a collective of people who want to help each other 
           learn, and in an open and friendly environment. Engaging in the prerequisite materials, especially CodeWars 
           Katas, has given me a greater insight into problem solving techniques for more complex coding problems, 
-          pushing me to think in a more structured way.</p>
+          pushing me to think in a more structured and logical way.</p>
 
         <p>Should I get accepted on to the course, I would hope to contribute to other people’s development as much 
           as I can, become a better problem solver, and form relationships with others on the course with a view to 
-          working together in the future. In the future, I want to be part of a working environment where people pool 
-          their skills to produce work which is beyond the level that any one individual could produce - ‘beyond the 
-          sum of their parts.’</p>
+          working together once we have completed it. Beyond the course, I would seek to work on projects with 
+          former coursemates, pooling our individual skills and talents to produce work that is 
+          ‘beyond the sum of it's parts,’ or beyond the level that any one individual in the group is capable of.</p>
       </div>
     </div>
   </div>
@@ -129,6 +149,43 @@
       </div><!-- cols-two -->
     </div>
   </div><!-- #hobbies -->
+  <script>
+    'use strict';
+    const intro = document.querySelector('#intro');
+    const puzzle = document.querySelector('.puzzle');
+    // listen to scroll event
+    // - if why section has been scrolled to, add animated class to puzzle
+    function addAnimation() {
+
+      
+      if (window.scrollY > intro.offsetHeight - 220) {
+        puzzle.classList.add('animated');
+      }
+    }
+    window.addEventListener('scroll', debounce(addAnimation));
+
+    // debounce function - stop scroll event from constantly firing
+    function debounce(func, wait = 20, immediate = true) {
+      let timeout;
+      return function() {
+        const context = this, args = arguments;
+        const later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    };
+
+
+
+
+
+
+  </script>
 
 
 </body>
