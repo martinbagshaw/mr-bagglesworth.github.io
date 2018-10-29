@@ -2611,12 +2611,13 @@ img:not(.nav-img) {
     color: #ffffff; }
   .img-container + p {
     margin: 0;
-    padding: 0 2rem 6rem; }
+    padding: 0 2rem 8rem; }
     .img-container + p a {
       position: absolute;
       bottom: 0;
       text-transform: uppercase;
       font-weight: 400;
+      font-size: 2rem;
       padding: 2rem 0; }
 
 .laptop {

@@ -168,12 +168,13 @@
     }
     + p {
         margin : 0;
-        padding : 0 2rem 6rem;
+        padding : 0 2rem 8rem;
         a {
             position : absolute;
             bottom : 0;
             text-transform : uppercase;
             font-weight : $bold;
+            font-size : 2rem;
             padding : 2rem 0;
         }
     }
